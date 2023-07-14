@@ -2,7 +2,7 @@ class Solution {
 public:
     bool searchMatrix(vector<vector<int>>& matrix, int target) {
 
-        // This code is for the O(log m+n) based time complexity.
+        // This code is for the O(log m*n) based time complexity.
         if(matrix.empty() || matrix[0].empty()){
             return false;
         }
