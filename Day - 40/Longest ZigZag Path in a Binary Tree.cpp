@@ -27,7 +27,6 @@ public:
     int maxStep = 0;
     int longestZigZag(TreeNode* root) {
         check(root,0,true);
-        check(root,0,false);
         return maxStep;
     }
 };
