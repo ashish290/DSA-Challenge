@@ -11,22 +11,18 @@
  */
 class Solution {
 public:
-    void check(TreeNode* root,int cnt,bool isLeft) {
-        if(!root) return;
-        maxStep = max(maxStep,cnt);
-        if (isLeft) {
-            check(root->left,cnt + 1,false);
-            check(root->right,1,true);
+    int check(TreeNode* root,int cnt,bool isLeft) {
+        if(root) {
+        if (isLeft) 
+          return max(check(root->left,1,true),check(root->right,cnt+1,false));
+        else 
+           return max(check(root->left,cnt + 1,true),check(root->right,1,false));
         }
-        else {
-          check(root->right,cnt+1,true);
-          check(root->left,1,false);
-          }
+          return cnt-1;
         }
 
-    int maxStep = 0;
+
     int longestZigZag(TreeNode* root) {
-        check(root,0,true);
-        return maxStep;
+        return check(root,0,true);
     }
 };
