@@ -12,6 +12,9 @@
 class Solution {
 public:
     bool isEvenOddTree(TreeNode* root) {
+        if(!root) {
+            return 0;
+        }
         int level = 0;
         queue<TreeNode*>qu;
         qu.push(root);
@@ -27,24 +30,22 @@ public:
                 if(root->right)
                 qu.push(root->right);
             }
-            // Checking for even nodes
-            if(level == 0 || level % 2 == 0){
-                for(int i = 0; i < ans.size(); i++){
-                    if(ans[i]%2==0) return true;
-                    if(ans[i] > ans[i+1]) return true;
-                }
-                // for(int i =0; i < ans.size(); i++)
+            // Checking for even level-nodes
+            if(level % 2 == 0) {
+                for(int i = 0; i < ans.size(); i++)
+                    if(ans[i]%2==0) return false;
+                for(int i = 0; i < ans.size()-1; i++)
+                    if(ans[i] >= ans[i+1]) return false;
             }
-            // Checking for odd nodes
+            // Checking for odd level-nodes
             else {
-                for(int i = 0; i < ans.size(); i++){
-                if(ans[i]%2 != 0) return true;
-                if(ans[i+1] > ans[i]) return true;
-                }
-                // for(int i = 0; i < ans.size(); i++)
+                for(int i = 0; i < ans.size(); i++)
+                if(ans[i]%2 != 0) return false;
+                for(int i = 0; i < ans.size()-1; i++)
+                if(ans[i+1] >= ans[i]) return false;
             }
             level++;
         }
-        return false;
+        return true;
     }
 };
