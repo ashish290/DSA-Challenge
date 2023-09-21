@@ -7,12 +7,12 @@ public:
             return;
         }
 
-        print(nums,temp,s,idx+1);
         if(temp.size() == 0 || temp[temp.size()-1] <= nums[idx]) {
         temp.push_back(nums[idx]);
         print(nums,temp,s,idx+1);
         temp.pop_back();
         }
+        print(nums,temp,s,idx+1);
     }
     vector<vector<int>> findSubsequences(vector<int>& nums) {
         set<vector<int>> s;
