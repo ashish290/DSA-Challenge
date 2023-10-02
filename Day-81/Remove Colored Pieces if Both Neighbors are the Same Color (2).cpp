@@ -1,19 +1,18 @@
 class Solution {
 public:
-    bool winnerOfGame(string colors) {
-        int alice = 0; 
-        int bob = 0;
-        for(int i = 1; i < colors.size()-1; i++) {
-            if(colors[i-1] == 'A' || colors[i] == 'A' || colors[i+1] == 'A')
-            alice++;
-            if(colors[i-1] == 'B' || colors[i] == 'B' || colors[i+1] == 'B')
-            bob++;
+    long long maximumTripletValue(vector<int>& nums) {
+        int n = nums.size();
+        long long val = 0;
+        long long maxi_val = 0;
+        for(int i = 0; i < n; i++) {
+            for(int j = i+1; j < n; j++) {
+                for(int k = j+1; k < n; k++) {
+                    val = (long)(nums[i] - nums[j]) * (long) nums[k];
+                    if(val > maxi_val)
+                    maxi_val = val;
+                }
+            }
         }
-        if(alice == 0 && bob == 0)
-        return false;
-        if(alice > bob)
-        return true;
-
-        return false;
+        return maxi_val;
     }
 };
